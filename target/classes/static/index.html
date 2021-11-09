@@ -1,18 +1,47 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Your first Spring application</title>
+    <title>You first Spring application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p><a href="/hello">Greet the world!</a></p>
+<form action="/add" method="POST">
+    <p>Let's add a customer.</p>
 
-<form action="/hello" method="GET" id="nameForm">
     <div>
-        <label for="nameField">How should the app call you?</label>
-        <input name="myName" id="nameField">
-        <button>Greet me!</button>
+        <label for="firstName">First name:</label>
+        <input name="first" id="firstName" value="Homer">
+    </div>
+    <div>
+        <label for="lastName">Last name:</label>
+        <input name="last" id="lastName" value="Simpson">
+    </div>
+    <div>
+        <button>Add customer</button>
     </div>
 </form>
+
+<form action="/list" method="GET">
+    <button>List customers</button>
+</form>
+
+<form action="/addP" method="POST">
+    <p>Let's add a product.</p>
+
+    <div>
+        <label for="name">>Name:</label>
+        <input name="name" id="name" value="Masaje">
+    </div>
+    <div>
+        <label for="price">Price:</label>
+        <input name="price" id="price" value="29.95">
+    </div>
+    <div>
+        <button>Add product</button>
+    </div>
+</form>
+
+<a href="/products.html" role=button">Products </a>
+
 </body>
 </html>
