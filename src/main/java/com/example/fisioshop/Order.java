@@ -13,14 +13,21 @@ public class Order {
     private String name;
     private Float totalPrice;
 
-    @OneToMany(mappedBy = "order_ids")
-    private Collection<Customer> customer_id;
+    @ManyToOne
+    private Customer customer_id;
 
-    public Collection<Customer> getCustomer_id() {
+    public Order(String name, float totalprice, Customer customer1) {
+        this.name = name;
+        this.totalPrice = totalprice;
+        this.customer_id = customer1;
+
+    }
+
+    public Customer getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(Collection<Customer> customer_id) {
+    public void setCustomer_id(Customer customer_id) {
         this.customer_id = customer_id;
     }
 
