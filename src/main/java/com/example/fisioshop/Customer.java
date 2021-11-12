@@ -15,6 +15,11 @@ public class Customer {
     @ManyToOne(optional = false)
     private Order order_ids;
 
+    public Customer(String firstname, String lastname) {
+        this.firstName = firstname;
+        this.lastName = lastname;
+    }
+
     public Order getOrder_ids() {
         return order_ids;
     }

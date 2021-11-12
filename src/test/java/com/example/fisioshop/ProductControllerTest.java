@@ -1,57 +1,109 @@
 package com.example.fisioshop;
 
-
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.verify;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductControllerTest {
-    ProdController prodC = new ProdController();
 
+    ArrayList<Product> products_r1 = new ArrayList<>();
+    ArrayList<Product> products_r2 = new ArrayList<>();
+    //ArrayList<Product> products_r3 = new ArrayList<>();
+
+    /*@BeforeAll
+    void setUp(){
+
+        for(int i=0; i<5;i++) {
+            //if(i < 3){
+            Product product = new Product("Masaje " + i, 10.20 * (i + 1), "descripcion producto " + i);
+            products_r1.add(product);
+            //}
+            //Product product = new Product("Masaje " + i, 10.20 * (i + 1), "descripcion producto " + i);
+            //products_r3.add(product);
+        }
+    }*/
+
+    @Mock
+    ProductService ProductService;
+
+    ProdController prodC = new ProdController(ProductService);
+    /*
+    Utilitzem sis casos de paràmetres per obtenir les diferentes particions equivalents.
+            CASOS:
+            - happy path: tipus i valors correctes.
+            - sad path: posem limitacions als atributs de Customere:
+                · name: entre 2 i 12, mínim una lletra
+                . price: no 0.0
+                . description: entre 0 i 20
+    */
     @Test
     void addProductTest(){
-        //WITH PRODUCT
-        String result = prodC.addProduct("Crema", 24.50);
-        assertEquals("Crema", result);
+        //CASOS HAPPY PATH
+        String result1 = prodC.addProduct("Masaje 1", 10.20, "Masaje"); //HAPPY PATH
 
-        //WITHOUT PRODUCT
-        String result2 = prodC.addProduct("", 10.00);
-        assertEquals("", result2);
+        //CASOS SAD PATH
+        String result2 = prodC.addProduct("Masaje 1", 0.0, "Masaje"); //SAD PATH PRICE
+
+        String result3 = prodC.addProduct("1234", 10.20, "Masaje"); //SAD PATH NAME 1
+        String result4 = prodC.addProduct("a", 10.20, "Masaje"); //SAD PATH NAME 2
+        String result5 = prodC.addProduct("qwertyuiopasdf", 10.20, "Masaje"); //SAD PATH NAME 3
+
+        String result6 = prodC.addProduct("Masaje 1", 10.20, "Aquesta descripció " +
+                "té més de 20 caràcters i per tant falla"); //SAD PATH DESC 2
+
+        assertEquals("AQUEST PRODUCTE S'HA CREAT CORRECTAMENT", result1);
+        assertEquals("AQUEST PRODUCTE HA DE TENIR UN PREU SUPERIOR A 0", result2);
+        assertEquals("AQUEST PRODUCTE HA DE CONTENIR UN NOM DE MÍNIM UNA LLETRA", result3);
+        assertEquals("AQUEST PRODUCTE HA DE TENIR UN NOM DE MÍNIM 2 CARÀCTERS", result4);
+        assertEquals("AQUEST PRODUCTE HA DE TENIR UN NOM DE MÀXIM 12 CARÀCTERS", result5);
+        assertEquals("AQUEST PRODUCTE HA DE TENIR UNA DESCRIPCIÓ DE MÀXIM 20 CARÀCTERS", result6);
+
     }
 
+    /*
+    Utilitzem quatre casos de constructor per obtenir les diferentes particions equivalents.
+            CASOS:
+            - happy path: retorn de quantitat i objectes correcte
+    */
+    @Test
     void getProductsTest(){
-        ArrayList<Product> expected = this.getListOfProducts();
+        //INICIAR MOCK AMB DADES DE PRODUCTES
+        prodC.initProducts();
 
+        //CREAR LLIST EXPECTED DE PRODUCTES
+        ArrayList<Product> expected = this.getListOfProducts(3);
+        doReturn(expected).when(ProductService).getAll();
+
+        //CRIDAR FUNCIÓ A TESTEJAR
         ArrayList<Product> result = prodC.getProducts();
 
-        //assertEquals(result, expected);
-
-        assertEquals(expected.size(), result.size());
-        for (int i = 0; i < 3; i++) {
-            assertEquals(expected.get(i).getName().toString(), result.get(i).getName().toString());
-        }
+        //COMPROVACIÓ
+        verify(ProductService).getAll();
+        assertEquals(expected, result);
     }
 
-    private ArrayList<Product> getListOfProducts(){
+    private ArrayList<Product> getListOfProducts(int N){
         ArrayList<Product> products = new ArrayList<>();
 
-        Product product = new Product("Masaje 1", 20.95, "Masaje Facial");
-        products.add(product);
+        for(int i=0; i<N;i++) {
+            Product product = new Product("Masaje " + i, 10.20 * (i + 1), "Masaje");
 
-        product = new Product("Masaje 2", 30.95, "Masaje Corporal");
-        products.add(product);
-
-        product = new Product("Masaje 2", 50.95, "Masaje Completo");
-        products.add(product);
+            products.add(product);
+        }
 
         return products;
     }

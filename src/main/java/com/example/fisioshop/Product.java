@@ -1,11 +1,10 @@
 package com.example.fisioshop;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name="product")
 public class Product {
 
     @Id
@@ -54,5 +53,12 @@ public class Product {
     public void setDescription(String name) {
         this.name = name;
     }
+
+
+
+    String name_expected1 = "test1";
+    String name_expected2 = "test2";
+    String name_expected3 = "test3";
+    String name_expected4 = "test4";
 
 }
