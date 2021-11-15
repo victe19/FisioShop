@@ -2,6 +2,7 @@ package com.example.fisioshop;
 
 import com.example.fisioshop.controllers.CategoryController;
 import com.example.fisioshop.models.Category;
+import com.example.fisioshop.repositories.CategoryService;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
@@ -53,10 +54,10 @@ public class CategoryControllerTest {
 
 
         assertEquals("AQUESTA CATEGORIA S'HA CREAT CORRECTAMENT", result1);
-        assertEquals("AQUESTA CATEGORIA HA DE TENIR UN NOM DE MÍNIM 2 CARÀCTERS", result2);
-        assertEquals("AQUESTA CATEGORIA HA DE TENIR UN NOM DE MÍNIM 2 CARÀCTERS", result3);
+        assertEquals("AQUESTA CATEGORIA HA DE TENIR UN NOM DE MÍNIM 2 CARÀCTERS, NO 0", result2);
+        assertEquals("AQUESTA CATEGORIA HA DE TENIR UN NOM DE MÍNIM 2 CARÀCTERS, NO 1", result3);
         assertEquals("AQUESTA CATEGORIA HA DE TENIR UN NOM DE MÀXIM 12 CARÀCTERS", result4);
-        assertEquals("AQUESTA CATEGORIA HA DE TENIR UN NOM, NO UN NUMERO", result5);
+        assertEquals("AQUESTA CATEGORIA HA DE TENIR UN NOM, NO UN NUMERO SOL", result5);
         //assertEquals("AQUESTA CATEGORIA HA DE TENIR UN NOM, NO UN NUMERO", result6);
 
     }
