@@ -1,5 +1,6 @@
 package com.example.fisioshop;
 
+import com.example.fisioshop.controllers.ProdController;
 import com.example.fisioshop.models.Product;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,19 +22,6 @@ public class ProductControllerTest {
     ArrayList<Product> products_r1 = new ArrayList<>();
     ArrayList<Product> products_r2 = new ArrayList<>();
     //ArrayList<Product> products_r3 = new ArrayList<>();
-
-    /*@BeforeAll
-    void setUp(){
-
-        for(int i=0; i<5;i++) {
-            //if(i < 3){
-            Product product = new Product("Masaje " + i, 10.20 * (i + 1), "descripcion producto " + i);
-            products_r1.add(product);
-            //}
-            //Product product = new Product("Masaje " + i, 10.20 * (i + 1), "descripcion producto " + i);
-            //products_r3.add(product);
-        }
-    }*/
 
     @Mock
     com.example.fisioshop.repositories.ProductService ProductService;
