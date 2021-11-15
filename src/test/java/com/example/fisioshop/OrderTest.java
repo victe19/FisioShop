@@ -27,7 +27,7 @@ public class OrderTest {
         }
     }
     @Test
-    void ConstructorTest() {
+    public void ConstructorTest() {
         //OBJECTS
 
         Order order1 = new Order("order1", 100.0, customer1, products);
@@ -39,14 +39,15 @@ public class OrderTest {
         //ASSERTS
         assertEquals("Nom correcte", name_expected1, order1.getName());
         assertEquals("Preu correcte", price_expected1, order1.gettotalPrice());
-        assertEquals("Descripció correcte", customer1, order1.getCustomer_id());
+        assertEquals("Customer correcte", customer1, order1.getCustomer_id());
         assertEquals("Productes correctes", products, order1.getProducts());
     }
     /*
     Test per comprovar funcionalitat de calcular el preu total
         Analitzar si suma bé els preus de cada producte i retorne un missatge satisfactori
      */
-    void calculateTotalPriceTest(){
+    @Test
+    public void calculateTotalPriceTest(){
         Order order1 = new Order("order1", 0.0, customer1, products);
         String result = order1.calculateTotalPrice();
 
