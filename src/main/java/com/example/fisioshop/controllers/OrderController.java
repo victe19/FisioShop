@@ -1,5 +1,6 @@
-package com.example.fisioshop;
+package com.example.fisioshop.controllers;
 
+import com.example.fisioshop.models.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     @Autowired
-    private OrderRepository OrderRepository;
+    private com.example.fisioshop.repositories.OrderRepository OrderRepository;
 
     @PostMapping("/addO")
     public String addOrder(@RequestParam String name, @RequestParam Float totalprice) {

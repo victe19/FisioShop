@@ -1,8 +1,8 @@
 package com.example.fisioshop;
 
+import com.example.fisioshop.models.Product;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.internal.matchers.Null;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 

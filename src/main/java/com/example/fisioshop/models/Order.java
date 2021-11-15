@@ -1,7 +1,8 @@
-package com.example.fisioshop;
+package com.example.fisioshop.models;
+
+import com.example.fisioshop.models.Customer;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 public class Order {
@@ -20,6 +21,10 @@ public class Order {
         this.name = name;
         this.totalPrice = totalprice;
         this.customer_id = customer1;
+
+    }
+
+    public Order() {
 
     }
 

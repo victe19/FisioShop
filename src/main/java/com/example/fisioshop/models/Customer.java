@@ -1,4 +1,4 @@
-package com.example.fisioshop;
+package com.example.fisioshop.models;
 
 import javax.persistence.*;
 
@@ -18,6 +18,10 @@ public class Customer {
     public Customer(String firstname, String lastname) {
         this.firstName = firstname;
         this.lastName = lastname;
+    }
+
+    public Customer() {
+
     }
 
     public Order getOrder_ids() {
