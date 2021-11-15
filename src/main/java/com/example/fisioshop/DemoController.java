@@ -1,5 +1,6 @@
 package com.example.fisioshop;
 
+import com.example.fisioshop.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

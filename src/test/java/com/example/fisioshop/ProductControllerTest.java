@@ -1,14 +1,12 @@
 package com.example.fisioshop;
 
+import com.example.fisioshop.models.Product;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,7 +36,7 @@ public class ProductControllerTest {
     }*/
 
     @Mock
-    ProductService ProductService;
+    com.example.fisioshop.repositories.ProductService ProductService;
 
     ProdController prodC = new ProdController(ProductService);
     /*

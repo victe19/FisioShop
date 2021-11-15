@@ -1,4 +1,4 @@
-package com.example.fisioshop;
+package com.example.fisioshop.models;
 import javax.persistence.*;
 
 @Entity
